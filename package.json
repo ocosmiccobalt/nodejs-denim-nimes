@@ -1,5 +1,5 @@
 {
-  "name": "denim-backend",
+  "name": "nodejs-denim-nimes",
   "version": "1.0.0",
   "private": true,
   "description": "Backend part of online denim store demo: a RESTful API talking to the MySQL db",
