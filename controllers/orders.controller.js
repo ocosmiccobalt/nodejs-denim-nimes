@@ -5,7 +5,7 @@ import Order from '../models/order.model.js';
 export async function addOrder(req, res, next) {
   const orderData = req.body.order;
 
-  if (orderData === null || orderData.items === null) {
+  if (orderData === null || orderData.items === null || orderData.items.length === 0) {
     return res
       .status(400)
       .json({ message: 'Missing data.' });
@@ -23,10 +23,12 @@ export async function addOrder(req, res, next) {
     orderData.customer.city === null ||
     orderData.customer.city.trim() === ''
   ) {
-    return res.status(400).json({
-      message:
-        'Missing data: Email, name, street, postal code or city is missing.',
-    });
+    return res
+      .status(400)
+      .json({
+        message:
+          'Missing data: Email, name, street, postal code or city is missing.'
+      });
   }
 
   const orderId = uuidv4();
@@ -48,5 +50,7 @@ export async function addOrder(req, res, next) {
     return next(error);
   }
 
-  res.status(201).json({ message: 'Order' + orderId + 'created!' });
+  res
+    .status(201)
+    .json({ message: 'Order' + orderId + 'created!' });
 }
