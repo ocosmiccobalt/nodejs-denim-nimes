@@ -1,11 +1,14 @@
 import bodyParser from 'body-parser';
 import express from 'express';
+import helmet from 'helmet';
 
 import { default as productsRoutes } from './routes/products.routes.js';
 import { default as ordersRoutes } from './routes/orders.routes.js';
 import enableCors from './middlewares/cors.js';
 
 const app = express();
+
+app.use(helmet());
 
 app.use(bodyParser.json());
 
